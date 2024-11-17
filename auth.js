@@ -3,8 +3,12 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 document.getElementById('github-login').onclick = async () => {
+    const email = prompt("Введите ваш email:");
+    const password = prompt("Введите ваш пароль:");
+
     const { user, session, error } = await supabase.auth.signIn({
-        provider: 'github',
+        email: email,
+        password: password,
     });
 
     if (error) {
